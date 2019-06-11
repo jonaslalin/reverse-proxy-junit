@@ -23,6 +23,9 @@ public class ReverseProxyMatchingEngine {
     }
 
     public String findBackend(String url) {
-        return "SERVER_A";
+        return rules.entrySet().stream().filter(b -> url.startsWith(b.getKey()))
+                .sorted((b1, b2) -> b2.getKey().length() - b1.getKey().length())
+                .filter(b -> url.equals(b.getKey()) || b.getKey().endsWith("/") || url.contains(b.getKey() + "/"))
+                .map(Map.Entry::getValue).findFirst().orElse(null);
     }
 }

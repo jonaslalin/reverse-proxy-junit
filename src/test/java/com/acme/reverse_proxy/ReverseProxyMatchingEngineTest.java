@@ -1,7 +1,6 @@
 package com.acme.reverse_proxy;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 public class ReverseProxyMatchingEngineTest {
@@ -9,6 +8,9 @@ public class ReverseProxyMatchingEngineTest {
 
     @Test
     public void testFindBackend() {
-        assertEquals("http://example.com/ failed", "SERVER_A", engine.findBackend("http://example.com/"));
+        assertEquals(
+                "http://example.com/ failed",
+                "SERVER_A",
+                engine.findBackend("http://example.com/"));
     }
 }
